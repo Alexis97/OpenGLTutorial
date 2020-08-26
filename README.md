@@ -35,4 +35,47 @@ time.
 more files, you will have to run cmake again (which you can from the command line with `cmake ..` from the `Build` folder and the files will automatically be added if they are in the same locations as the starter code).
 
 ## How does the code work?
-After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic ^[gameloop]:A game loop is the while loop which contains the code which runs between every frame.
+After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic *game loop*. A *game loop* is the while loop which contains the code which runs between every frame.
+
+### Initialization
+In the main function, we firstly initialize and configure **glfw**.
+**glfw** is a lightweight utility library for OpenGL. It implements simple windowing API for OpenGL, and provide callback driven event processing of display, keyboard, mouse, controllers, etc.
+``
+glfwInit();
+``
+This initial function is called for every OpenGL program.
+
+### Create the window
+We then create the window by using `glfwCreateWindow` function like this: 
+``GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session I", NULL, NULL);``
+The parameters in this function are: width, height, window name, monitor (nullptrusually) and share (nullptrusually).
+
+### Build and compile the shader program
+We will not cover this part so far. So just leave this code part there and we will go back to discuss vertex and fragment shader in the third project.
+
+### Load the content
+The pipeline of rendering on an OpenGL/GLFW program is shown below.
+
+Hence, we firstly define the vertex data. As a tutorial example, we define 3 vertices of a triangle in a float-type array:
+```
+float vertices[] = {
+    -0.5f, -0.5f, 0.0f, // left  
+    0.5f, -0.5f, 0.0f, // right 
+    0.0f,  0.5f, 0.0f  // top   
+};
+```
+Every three elements in this array indicates the ``x,y,z`` coordinate of a vertex.
+
+Then we create a *VBO* (Vertex Buffer Object) which sets up a buffers to send data to the GPU.
+The *VBO* is created by setting an unsigned int value to refer to it later:
+```
+unsigned int VBO; \\Vertex Buffer Object ID
+glGenBuffers(1, &VBO); \\Generate Buffer
+```
+Then we bind the buffer with *VBO* and buffer the data to *VBO*:
+```
+glBindBuffer(GL_ARRAY_BUFFER, VBO); \\Bind Buffer with VBO
+glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); \\Send data to the buffer
+```
+Here ``GL_ARRAY_BUFFER`` indicates the data type, and ``GL_STATIC_DRAW`` indicates how the GPU will treat the data. These two parameters will remain unchanged.
+
