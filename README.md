@@ -7,8 +7,8 @@ It is a low-level graphics API to specify objects and operations for 3D graphics
 Clone or download the code to your work directory, `$home = path/to/files`
 ### On Windows
 1. Prerequest: 
-  -- cmake-gui >= 3.15.3
-  -- visual studio: 19 or higher
+    - cmake-gui >= 3.15.3
+    - visual studio: 19 or higher
 2. Configure the project:
   - Create a build directory `Build` under `$home`.
   - Open cmake-gui (already installed on lab machines or install it on your personal computer if you are using that).
@@ -35,5 +35,4 @@ time.
 more files, you will have to run cmake again (which you can from the command line with `cmake ..` from the `Build` folder and the files will automatically be added if they are in the same locations as the starter code).
 
 ## How does the code work?
-After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic [^gameloop].
-[^gameloop]:A game loop is the while loop which contains the code which runs between every frame.
+After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic [^gameloop:A game loop is the while loop which contains the code which runs between every frame.].
