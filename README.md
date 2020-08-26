@@ -35,4 +35,4 @@ time.
 more files, you will have to run cmake again (which you can from the command line with `cmake ..` from the `Build` folder and the files will automatically be added if they are in the same locations as the starter code).
 
 ## How does the code work?
-After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic [^gameloop]:A game loop is the while loop which contains the code which runs between every frame.
+After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic ^[gameloop]:A game loop is the while loop which contains the code which runs between every frame.
