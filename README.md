@@ -1,5 +1,5 @@
 # OpenGLTutorial
-This is a tutorial of learning how to use OpenGL for CMPSC458 computer graphic course.
+This is a tutorial of learning how to use OpenGL for CMPSC458 computer graphics course.
 ## What is OpenGL?
 OpenGL(Open Graphic Library) is a software interface to graphics hardware.
 It is a low-level graphics API to specify objects and operations for 3D graphics, which is independent to OS/hardware.
@@ -56,7 +56,8 @@ We will not cover this part so far. So just leave this code part there and we wi
 ### Load the content
 The pipeline of rendering on an OpenGL/GLFW program is shown below.
 
-Hence, we firstly define the vertex data. As a tutorial example, we define 3 vertices of a triangle in a float-type array:
+1. Vertex data
+We firstly define the vertex data. As a tutorial example, we define 3 vertices of a triangle in a float-type array:
 ```
 float vertices[] = {
     -0.5f, -0.5f, 0.0f, // left  
@@ -66,16 +67,34 @@ float vertices[] = {
 ```
 Every three elements in this array indicates the ``x,y,z`` coordinate of a vertex.
 
-Then we create a *VBO* (Vertex Buffer Object) which sets up a buffers to send data to the GPU.
+2. Creating Vertex Buffer Object
+**VBO** (Vertex Buffer Object) sets up a buffer to send data to the GPU.
 The *VBO* is created by setting an unsigned int value to refer to it later:
 ```
 unsigned int VBO; \\Vertex Buffer Object ID
 glGenBuffers(1, &VBO); \\Generate Buffer
 ```
-Then we bind the buffer with *VBO* and buffer the data to *VBO*:
+We then bind the buffer with **VBO** and buffer the data to **VBO**:
 ```
 glBindBuffer(GL_ARRAY_BUFFER, VBO); \\Bind Buffer with VBO
 glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); \\Send data to the buffer
 ```
 Here ``GL_ARRAY_BUFFER`` indicates the data type, and ``GL_STATIC_DRAW`` indicates how the GPU will treat the data. These two parameters will remain unchanged.
+
+3. Creating Vertex Array Object
+Once we have the buffer, we need to tell OpenGL how to interpret the buffer.
+Similar to **VBO** initialization:
+```
+unsigned int VAO; \\Vertex Array Object ID
+glGenVertexArrays(1, &VAO); \\Generate Vertex Array
+```
+We then bind the vertex array:
+```
+glBindVertexArray(VAO);
+```
+**VAO** (Vertex Array Object) creates “attributes points” which tell OpenGL how to parse the data.
+```
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+```
+
 
