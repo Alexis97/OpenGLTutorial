@@ -38,7 +38,7 @@ more files, you will have to run cmake again (which you can from the command lin
 After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic *game loop*. A *game loop* is the while loop which contains the code which runs between every frame.
 
 So now let's go deeper to the code and see what each functional part works.
-### 1.Initialization
+### Initialization
 In the main function, we firstly initialize and configure **glfw**.
 **glfw** is a lightweight utility library for OpenGL. It implements simple windowing API for OpenGL, and provide callback driven event processing of display, keyboard, mouse, controllers, etc.
 ``
@@ -46,12 +46,12 @@ glfwInit();
 ``
 This initial function is called for every OpenGL program.
 
-### 2.Create the window
+### Create the window
 We then create the window by using `glfwCreateWindow` function like this: 
 ``GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session I", NULL, NULL);``
 The parameters of ``glfwCreateWindow`` are: width, height, window name, monitor (nullptr usually) and share (nullptr usually).
 
-### 3.Build and compile the shader
+### Build and compile the shader
 We will not cover much this part so far. We will go back to discuss more about vertex and fragment shader in the third Ray Tracing project. 
 What you need to know now is that at least vertex and fragment shaders are required to set up if we want to do some rendering, and shader is written in the shader language GLSL (OpenGL Shading Language).
 Here we only compile very simple vertex and fragment shaders.
@@ -65,6 +65,8 @@ void main()
     gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
 }
 ```
+The vertex shader converts each 3D coordinate of a vertex into vec4 of (x, y, z, w) in which *w* is called perspective division. We will cover this part in matrix transformation lectures.
+
 - Fragment Shader
 ```
 #version 330 core
@@ -75,11 +77,12 @@ void main()
     FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
 } 
 ```
+Here the fragment shader simply defines the final color output in vec4 of (red, green, blue, alpha value).
 
-### 4.Vertex Input
+### Vertex Input
 The pipeline of rendering on an OpenGL/GLFW program is shown below.
 
-    - Vertex data
+1. Vertex data
 
     We firstly define the vertex data. As a tutorial example, we define 3 vertices of a triangle in a float-type array:
     ```
@@ -91,7 +94,7 @@ The pipeline of rendering on an OpenGL/GLFW program is shown below.
     ```
     Every three elements in this array indicates the ``x,y,z`` coordinate of a vertex.
 
-    - Creating Vertex Buffer Object
+2. Creating Vertex Buffer Object
 
     *VBO* (Vertex Buffer Object) sets up a buffer to send data to the GPU.
     The *VBO* is created by setting an unsigned int value to refer to it later:
@@ -106,7 +109,7 @@ The pipeline of rendering on an OpenGL/GLFW program is shown below.
     ```
     Here ``GL_ARRAY_BUFFER`` indicates the data type, and ``GL_STATIC_DRAW`` indicates how the GPU will treat the data. These two parameters will remain unchanged.
 
-    - Creating Vertex Array Object
+3. Creating Vertex Array Object
 
     Once we have the buffer, we need to tell OpenGL how to interpret the buffer.
     Similar to *VBO* initialization:
@@ -132,9 +135,9 @@ The pipeline of rendering on an OpenGL/GLFW program is shown below.
 
     Hence, here `3` indicates that each vertex is composed of 3 float type values. `3 * sizeof(float)`  indicates the stride to next vertex is the size of each vertex element, since the vertices are stored in a list. 
 
-### 4. Game Loop
+### Game Loop
 The game loop is where we run the application.
-a. Set background color
+1. Set background color
     
     - We set the background color by:
     ``glClearColor(0.2f, 0.3f, 0.3f, 1.0f);``
@@ -143,7 +146,7 @@ a. Set background color
     - Then clear any previous data in buffer:
     ``glClear(GL_COLOR_BUFFER_BIT);``
 
-b. Draw our first triangle
+2. Draw our first triangle
 
     - We need to define how to render:
     ``glUseProgram(shaderProgram);``
@@ -162,7 +165,7 @@ b. Draw our first triangle
     In this example, `GL_TRIANGLES` tells the function to draw lines between every three points. It starts from the beginning of VAO and renders 3 vertices.
     Although `GL_TRIANGLES` is the easiest and most commonly used, there are other kinds of primitives, including points, lines, polygons, etc.
 
-c. Check and call events and swap the buffers
+3. Check and call events and swap the buffers
     ```
     glfwSwapBuffers(window);
     glfwPollEvents();
@@ -172,11 +175,19 @@ c. Check and call events and swap the buffers
 ## Practice
 Till now hope you have learnt the basic struture of an OpenGL program, and got familiar with these basic variables and functions.
 As a practice, could you:
-- Create a Second Triangle. You need to add more vertices, and change ``glDrawArrays`` to load 6 (instead of 3) vertices
+- Create a Second Triangle. 
+    You need to add more vertices, and change ``glDrawArrays`` to load 6 (instead of 3) vertices
+
 - Create a rectangle by combining the two triangles.
+    Bonus: you may consider using *EBO* (Element Buffer Objects) which is a better solution that store only the unique vertices and then specify the order at which we want to draw these vertices in.
+    Learn how to use it by yourself from <https://learnopengl.com/Getting-started/Hello-Triangle>.
+    
 - Change the color of the triangles.
+    Hint: Think of where the color comes from?
+    
+    Bonus: What if we want to specify different colors for each triangle?
 
 ## Acknowledgement
-Thanks to <https://learnopengl.com/> for providing figures and some tutorials about how to draw a triangle.
+Thanks to <https://learnopengl.com/> for providing fantastic figures and some starting tutorials.
 
 Thanks to <https://github.com/Polytonic/Glitter/tree/master/Glitterwhich> for providing the shell for the tutorial code.
