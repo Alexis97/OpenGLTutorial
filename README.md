@@ -174,6 +174,7 @@ The game loop is where we run the application.
         
     In this example, `GL_TRIANGLES` tells the function to draw lines between every three points. It starts from the beginning of VAO and renders 3 vertices.
     Although `GL_TRIANGLES` is the easiest and most commonly used, there are other kinds of primitives, including points, lines, polygons, etc.
+    
     <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_1.jpg' width=75%>
     <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_2.jpg' width=75%>
     <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_3.jpg' width=75%>
