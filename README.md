@@ -48,13 +48,16 @@ This initial function is called for every OpenGL program.
 
 ### Create the window
 We then create the window by using `glfwCreateWindow` function like this: 
-``GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session I", NULL, NULL);``
+```
+GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session I", NULL, NULL);
+```
 The parameters of ``glfwCreateWindow`` are: width, height, window name, monitor (nullptr usually) and share (nullptr usually).
 
 ### Build and compile the shader
 We will not cover much this part so far. We will go back to discuss more about vertex and fragment shader in the third Ray Tracing project. 
 What you need to know now is that at least vertex and fragment shaders are required to set up if we want to do some rendering, and shader is written in the shader language GLSL (OpenGL Shading Language).
 Here we only compile very simple vertex and fragment shaders.
+
 - Vertex shader
 ```
 #version 330 core
@@ -176,13 +179,16 @@ The game loop is where we run the application.
 Till now hope you have learnt the basic struture of an OpenGL program, and got familiar with these basic variables and functions.
 As a practice, could you:
 - Create a Second Triangle. 
+
     You need to add more vertices, and change ``glDrawArrays`` to load 6 (instead of 3) vertices
 
 - Create a rectangle by combining the two triangles.
+
     Bonus: you may consider using *EBO* (Element Buffer Objects) which is a better solution that store only the unique vertices and then specify the order at which we want to draw these vertices in.
     Learn how to use it by yourself from <https://learnopengl.com/Getting-started/Hello-Triangle>.
     
 - Change the color of the triangles.
+
     Hint: Think of where the color comes from?
     
     Bonus: What if we want to specify different colors for each triangle?
