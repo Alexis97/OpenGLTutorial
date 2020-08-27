@@ -84,6 +84,7 @@ Here the fragment shader simply defines the final color output in vec4 of (red, 
 
 ### Vertex Input
 The pipeline of rendering on an OpenGL/GLFW program is shown below.
+<img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/renderPipeline.jpg' width=75%>
 
 1. Vertex data
 
@@ -137,6 +138,7 @@ The pipeline of rendering on an OpenGL/GLFW program is shown below.
     - Starting Position of element
 
     Hence, here `3` indicates that each vertex is composed of 3 float type values. `3 * sizeof(float)`  indicates the stride to next vertex is the size of each vertex element, since the vertices are stored in a list. 
+    <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/vertexAttribPointer.jpg' width=75%>
 
 ### Game Loop
 The game loop is where we run the application.
