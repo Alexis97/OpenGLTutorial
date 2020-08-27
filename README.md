@@ -37,7 +37,7 @@ more files, you will have to run cmake again (which you can from the command lin
 ## How does the code work?
 After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic *game loop*. A *game loop* is the while loop which contains the code which runs between every frame.
 
-<img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/hellotriangle.png' width=75%>
+<img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/demo.png' width=75%>
 
 So now let's go deeper to the code and see what each functional part works.
 ### Initialization
