@@ -37,6 +37,8 @@ more files, you will have to run cmake again (which you can from the command lin
 ## How does the code work?
 After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic *game loop*. A *game loop* is the while loop which contains the code which runs between every frame.
 
+<img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/hellotriangle.png' width=75%>
+
 So now let's go deeper to the code and see what each functional part works.
 ### Initialization
 In the main function, we firstly initialize and configure **glfw**.
@@ -98,7 +100,7 @@ The pipeline of rendering on an OpenGL/GLFW program is shown below.
     ```
     Every three elements in this array indicates the ``x,y,z`` coordinate of a vertex.
 
-2. Creating Vertex Buffer Object
+2. Creating Vertex Buffer Object (VBO)
 
     *VBO* (Vertex Buffer Object) sets up a buffer to send data to the GPU.
     The *VBO* is created by setting an unsigned int value to refer to it later:
@@ -113,9 +115,12 @@ The pipeline of rendering on an OpenGL/GLFW program is shown below.
     ```
     Here ``GL_ARRAY_BUFFER`` indicates the data type, and ``GL_STATIC_DRAW`` indicates how the GPU will treat the data. These two parameters will remain unchanged.
 
-3. Creating Vertex Array Object
+3. Creating Vertex Array Object (VAO)
 
     Once we have the buffer, we need to tell OpenGL how to interpret the buffer.
+    The relationship of *VBO* and *VAO* (Vertex Array Object) is shown below:
+    <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/relation_VAO_VBO.jpg' width=75%>
+    
     Similar to *VBO* initialization:
     ```
     unsigned int VAO; \\Vertex Array Object ID
@@ -125,7 +130,7 @@ The pipeline of rendering on an OpenGL/GLFW program is shown below.
     ```
     glBindVertexArray(VAO);
     ```
-    *VAO* (Vertex Array Object) creates “attributes points” which tell OpenGL how to parse the data.
+    *VAO* creates “attributes points” which tell OpenGL how to parse the data.
     ```
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     ```
@@ -169,6 +174,9 @@ The game loop is where we run the application.
         
     In this example, `GL_TRIANGLES` tells the function to draw lines between every three points. It starts from the beginning of VAO and renders 3 vertices.
     Although `GL_TRIANGLES` is the easiest and most commonly used, there are other kinds of primitives, including points, lines, polygons, etc.
+    <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_1.jpg' width=75%>
+    <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_2.jpg' width=75%>
+    <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_3.jpg' width=75%>
 
 3. Check and call events and swap the buffers
     ```
@@ -196,6 +204,6 @@ As a practice, could you:
     Bonus: What if we want to specify different colors for each triangle?
 
 ## Acknowledgement
-Thanks to <https://learnopengl.com/> for providing fantastic figures and some starting tutorials.
+Thanks to <https://learnopengl.com/> for providing fantastic figures and tutorials for beginners.
 
 Thanks to <https://github.com/Polytonic/Glitter/tree/master/Glitterwhich> for providing the shell for the tutorial code.
