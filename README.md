@@ -82,19 +82,19 @@ glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); \\Sen
 Here ``GL_ARRAY_BUFFER`` indicates the data type, and ``GL_STATIC_DRAW`` indicates how the GPU will treat the data. These two parameters will remain unchanged.
 
 3. Creating Vertex Array Object
-Once we have the buffer, we need to tell OpenGL how to interpret the buffer.
-Similar to **VBO** initialization:
-```
-unsigned int VAO; \\Vertex Array Object ID
-glGenVertexArrays(1, &VAO); \\Generate Vertex Array
-```
-We then bind the vertex array:
-```
-glBindVertexArray(VAO);
-```
-**VAO** (Vertex Array Object) creates “attributes points” which tell OpenGL how to parse the data.
-```
-glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-```
+    Once we have the buffer, we need to tell OpenGL how to interpret the buffer.
+    Similar to **VBO** initialization:
+    ```
+    unsigned int VAO; \\Vertex Array Object ID
+    glGenVertexArrays(1, &VAO); \\Generate Vertex Array
+    ```
+    We then bind the vertex array:
+    ```
+    glBindVertexArray(VAO);
+    ```
+    **VAO** (Vertex Array Object) creates “attributes points” which tell OpenGL how to parse the data.
+    ```
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    ```
 
 
