@@ -38,78 +38,144 @@ more files, you will have to run cmake again (which you can from the command lin
 After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic *game loop*. A *game loop* is the while loop which contains the code which runs between every frame.
 
 So now let's go deeper to the code and see what each functional part works.
-    ### Initialization
-    In the main function, we firstly initialize and configure **glfw**.
-    **glfw** is a lightweight utility library for OpenGL. It implements simple windowing API for OpenGL, and provide callback driven event processing of display, keyboard, mouse, controllers, etc.
-    ``
-    glfwInit();
-    ``
-    This initial function is called for every OpenGL program.
+### Initialization
+In the main function, we firstly initialize and configure **glfw**.
+**glfw** is a lightweight utility library for OpenGL. It implements simple windowing API for OpenGL, and provide callback driven event processing of display, keyboard, mouse, controllers, etc.
+``
+glfwInit();
+``
+This initial function is called for every OpenGL program.
 
-    ### Create the window
-    We then create the window by using `glfwCreateWindow` function like this: 
-    ``GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session I", NULL, NULL);``
-    The parameters of ``glfwCreateWindow`` are: width, height, window name, monitor (nullptr usually) and share (nullptr usually).
+### Create the window
+We then create the window by using `glfwCreateWindow` function like this: 
+``GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session I", NULL, NULL);``
+The parameters of ``glfwCreateWindow`` are: width, height, window name, monitor (nullptr usually) and share (nullptr usually).
 
-    ### Build and compile the shader program
-    We will not cover this part so far. So just leave this code part there and we will go back to discuss vertex and fragment shader in the third project.
+### Build and compile the shader
+We will not cover much this part so far. We will go back to discuss more about vertex and fragment shader in the third Ray Tracing project. 
+What you need to know now is that at least vertex and fragment shaders are required to set up if we want to do some rendering, and shader is written in the shader language GLSL (OpenGL Shading Language).
+Here we only compile very simple vertex and fragment shaders.
+- Vertex shader
+```
+#version 330 core
+layout (location = 0) in vec3 aPos;
 
-    ### Load the content
-    The pipeline of rendering on an OpenGL/GLFW program is shown below.
+void main()
+{
+    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+}
+```
+- Fragment Shader
+```
+#version 330 core
+out vec4 FragColor;
 
-    1. Vertex data
+void main()
+{
+    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+} 
+```
 
-        We firstly define the vertex data. As a tutorial example, we define 3 vertices of a triangle in a float-type array:
-        ```
-        float vertices[] = {
-            -0.5f, -0.5f, 0.0f, // left  
-            0.5f, -0.5f, 0.0f, // right 
-            0.0f,  0.5f, 0.0f  // top   
-        };
-        ```
-        Every three elements in this array indicates the ``x,y,z`` coordinate of a vertex.
+### Vertex Input
+The pipeline of rendering on an OpenGL/GLFW program is shown below.
 
-    2. Creating Vertex Buffer Object
+1. Vertex data
 
-        **VBO** (Vertex Buffer Object) sets up a buffer to send data to the GPU.
-        The *VBO* is created by setting an unsigned int value to refer to it later:
-        ```
-        unsigned int VBO; \\Vertex Buffer Object ID
-        glGenBuffers(1, &VBO); \\Generate Buffer
-        ```
-        We then bind the buffer with **VBO** and buffer the data to **VBO**:
-        ```
-        glBindBuffer(GL_ARRAY_BUFFER, VBO); \\Bind Buffer with VBO
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); \\Send data to the buffer
-        ```
-        Here ``GL_ARRAY_BUFFER`` indicates the data type, and ``GL_STATIC_DRAW`` indicates how the GPU will treat the data. These two parameters will remain unchanged.
+    We firstly define the vertex data. As a tutorial example, we define 3 vertices of a triangle in a float-type array:
+    ```
+    float vertices[] = {
+        -0.5f, -0.5f, 0.0f, // left  
+        0.5f, -0.5f, 0.0f, // right 
+        0.0f,  0.5f, 0.0f  // top   
+    };
+    ```
+    Every three elements in this array indicates the ``x,y,z`` coordinate of a vertex.
 
-    3. Creating Vertex Array Object
+2. Creating Vertex Buffer Object
 
-        Once we have the buffer, we need to tell OpenGL how to interpret the buffer.
-        Similar to **VBO** initialization:
-        ```
-        unsigned int VAO; \\Vertex Array Object ID
-        glGenVertexArrays(1, &VAO); \\Generate Vertex Array
-        ```
-        We then bind the vertex array:
-        ```
-        glBindVertexArray(VAO);
-        ```
-        **VAO** (Vertex Array Object) creates “attributes points” which tell OpenGL how to parse the data.
-        ```
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        ```
-        The parameters of ``glVertexAttribPointer`` are:
-        - Location
-        - Number of Components
-        - Type
-        - Normalize Data
-        - Stride to next element in array
-        - Starting Position of element
+    **VBO** (Vertex Buffer Object) sets up a buffer to send data to the GPU.
+    The *VBO* is created by setting an unsigned int value to refer to it later:
+    ```
+    unsigned int VBO; \\Vertex Buffer Object ID
+    glGenBuffers(1, &VBO); \\Generate Buffer
+    ```
+    We then bind the buffer with **VBO** and buffer the data to **VBO**:
+    ```
+    glBindBuffer(GL_ARRAY_BUFFER, VBO); \\Bind Buffer with VBO
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); \\Send data to the buffer
+    ```
+    Here ``GL_ARRAY_BUFFER`` indicates the data type, and ``GL_STATIC_DRAW`` indicates how the GPU will treat the data. These two parameters will remain unchanged.
 
-        Hence, here `3` indicates that each vertex is composed of 3 float type values. `3 * sizeof(float)`  indicates the stride to next vertex is the size of each vertex element, since the vertices are stored in a list. 
+3. Creating Vertex Array Object
 
-    ### Game Loop
+    Once we have the buffer, we need to tell OpenGL how to interpret the buffer.
+    Similar to **VBO** initialization:
+    ```
+    unsigned int VAO; \\Vertex Array Object ID
+    glGenVertexArrays(1, &VAO); \\Generate Vertex Array
+    ```
+    We then bind the vertex array:
+    ```
+    glBindVertexArray(VAO);
+    ```
+    **VAO** (Vertex Array Object) creates “attributes points” which tell OpenGL how to parse the data.
+    ```
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    ```
+    The parameters of ``glVertexAttribPointer`` are:
+    - Location
+    - Number of Components
+    - Type
+    - Normalize Data
+    - Stride to next element in array
+    - Starting Position of element
 
+    Hence, here `3` indicates that each vertex is composed of 3 float type values. `3 * sizeof(float)`  indicates the stride to next vertex is the size of each vertex element, since the vertices are stored in a list. 
 
+### Game Loop
+The game loop is where we run the application.
+1. Set background color
+    
+    - We set the background color by:
+    ``glClearColor(0.2f, 0.3f, 0.3f, 1.0f);``
+    , which specifies the red, green, blue, and alpha values.
+    
+    - Then clear any previous data in buffer:
+    ``glClear(GL_COLOR_BUFFER_BIT);``
+
+2. Draw our first triangle
+
+    - We need to define how to render:
+    ``glUseProgram(shaderProgram);``
+    , which we will skip now and learn in next session.
+    
+    - Tell which data to use:
+    ``glBindVertexArray(VAO);``
+    
+    - Draw object:
+    ``glDrawArrays(GL_TRIANGLES, 0, 3);``
+    , in which the parameters are:
+        - Mode: Specifies what kind of primitives to render.
+        - Starting index
+        - Number of indices to be rendered
+        
+    In this example, `GL_TRIANGLES` tells the function to draw lines between every three points. It starts from the beginning of VAO and renders 3 vertices.
+    Although `GL_TRIANGLES` is the easiest and most commonly used, there are other kinds of primitives, including points, lines, polygons, etc.
+
+3. Check and call events and swap the buffers
+    ```
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+    ```
+    These two functions are called at the end of each loop, to swap the buffer and see if any keys were pressed since the last loop.
+
+## Practice
+Till now hope you have learnt the basic struture of an OpenGL program, and got familiar with these basic variables and functions.
+As a practice, could you:
+- Create a Second Triangle. You need to add more vertices, and change ``glDrawArrays`` to load 6 (instead of 3) vertices
+- Create a rectangle by combining the two triangles.
+- Change the color of the triangles.
+
+## Acknowledgement
+Thanks  to <learnopengl.com> for providing figures and some tutorials about how to draw a triangle.
+Thanks to <https://github.com/Polytonic/Glitter/tree/master/Glitterwhich> for providing the shell for the tutorial code.
