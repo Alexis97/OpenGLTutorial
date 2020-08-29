@@ -43,9 +43,9 @@ So now let's go deeper to the code and see what each functional part works.
 ### Initialization
 In the main function, we firstly initialize and configure **glfw**.
 **glfw** is a lightweight utility library for OpenGL. It implements simple windowing API for OpenGL, and provide callback driven event processing of display, keyboard, mouse, controllers, etc.
-``
+```
 glfwInit();
-``
+```
 This initial function is called for every OpenGL program.
 
 ### Create the window
