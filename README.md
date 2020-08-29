@@ -207,4 +207,4 @@ As a practice, could you:
 ## Acknowledgement
 Thanks to <https://learnopengl.com/> for providing fantastic figures and tutorials for beginners.
 
-Thanks to <https://github.com/Polytonic/Glitter/tree/master/Glitterwhich> for providing the shell for the tutorial code.
+Thanks to <https://github.com/Polytonic/Glitter/tree/master/Glitter> which for providing the shell for the tutorial code.
