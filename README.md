@@ -7,8 +7,8 @@ It is a low-level graphics API to specify objects and operations for 3D graphics
 Clone or download the code to your work directory, `$home = path/to/files`
 ### On Windows
 1. Prerequest: 
-    - cmake-gui >= 3.15.3
-    - visual studio: 19 or higher
+    - cmake-gui
+    - visual studio
 2. Configure the project:
     - Create a build directory `Build` under `$home`.
     - Open cmake-gui (already installed on lab machines or install it on your personal computer if you are using that).
@@ -25,7 +25,7 @@ time.
   
 ### On Linux/Mac 
 1. Prerequest:
-    - cmake >= 3.15.3
+    - cmake
 2. Configure the project:
     - `cd $home`.
     - `mkdir Build`
