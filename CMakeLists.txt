@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(CMPSC458_Projects)
+project(CMPSC458_Tutorial)
 
 
 option(GLFW_BUILD_DOCS OFF)
