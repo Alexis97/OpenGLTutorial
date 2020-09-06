@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 	// configure global opengl state
 	// -----------------------------
 	//  Uncomment below to actually test for depth. 
-	// glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 
 	// build and compile our shader program
 	// ------------------------------------
