@@ -7,8 +7,8 @@ It is a low-level graphics API to specify objects and operations for 3D graphics
 Clone or download the code to your work directory, `$home = path/to/files`
 ### On Windows
 1. Prerequest: 
-    - cmake-gui >= 3.15.3
-    - visual studio: 19 or higher
+    - cmake-gui
+    - visual studio
 2. Configure the project:
     - Create a build directory `Build` under `$home`.
     - Open cmake-gui (already installed on lab machines or install it on your personal computer if you are using that).
@@ -25,7 +25,7 @@ time.
   
 ### On Linux/Mac 
 1. Prerequest:
-    - cmake >= 3.15.3
+    - cmake
 2. Configure the project:
     - `cd $home`.
     - `mkdir Build`
@@ -37,15 +37,15 @@ more files, you will have to run cmake again (which you can from the command lin
 ## How does the code work?
 After you successfuly compile the project following our instruction, the **OpenGL_tutorial_I** part will show how to open a new window, display a triangle and has a basic *game loop*. A *game loop* is the while loop which contains the code which runs between every frame.
 
-<img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/hellotriangle.png' width=75%>
+<img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/demo.png' width=75%>
 
 So now let's go deeper to the code and see what each functional part works.
 ### Initialization
 In the main function, we firstly initialize and configure **glfw**.
 **glfw** is a lightweight utility library for OpenGL. It implements simple windowing API for OpenGL, and provide callback driven event processing of display, keyboard, mouse, controllers, etc.
-``
+```
 glfwInit();
-``
+```
 This initial function is called for every OpenGL program.
 
 ### Create the window
@@ -174,6 +174,7 @@ The game loop is where we run the application.
         
     In this example, `GL_TRIANGLES` tells the function to draw lines between every three points. It starts from the beginning of VAO and renders 3 vertices.
     Although `GL_TRIANGLES` is the easiest and most commonly used, there are other kinds of primitives, including points, lines, polygons, etc.
+    
     <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_1.jpg' width=75%>
     <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_2.jpg' width=75%>
     <img src='https://github.com/Alexis97/OpenGLTutorial/blob/master/Figures/shape_3.jpg' width=75%>
@@ -206,4 +207,4 @@ As a practice, could you:
 ## Acknowledgement
 Thanks to <https://learnopengl.com/> for providing fantastic figures and tutorials for beginners.
 
-Thanks to <https://github.com/Polytonic/Glitter/tree/master/Glitterwhich> for providing the shell for the tutorial code.
+Thanks to <https://github.com/Polytonic/Glitter/tree/master/Glitter> which for providing the shell for the tutorial code.
