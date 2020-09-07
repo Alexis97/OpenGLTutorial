@@ -1,10 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-<<<<<<< HEAD
 project(CMPSC458_Tutorials)
-=======
-project(CMPSC458_Tutorial)
->>>>>>> 687bff8e06fa0b336a3a8ec1b2d36142fadb096a
-
 
 option(GLFW_BUILD_DOCS OFF)
 option(GLFW_BUILD_EXAMPLES OFF)
