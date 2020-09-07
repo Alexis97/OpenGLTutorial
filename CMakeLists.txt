@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(CMPSC458_Projects)
+project(CMPSC458_Tutorials)
 
 
 option(GLFW_BUILD_DOCS OFF)
@@ -30,7 +30,6 @@ set(DCMAKE_BUILD_TYPE
 set(PROJECTS
     OpenGL_tutorial_I
     OpenGL_tutorial_II
-    Project_1
 )
 
 include_directories(Vendor/assimp/include/

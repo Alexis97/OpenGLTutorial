@@ -1,5 +1,5 @@
 // Just using the same header to make it easier
-#include <SessionI_Part2.hpp>
+#include <SessionII.hpp>
 
 
 // settings
@@ -8,7 +8,7 @@ const unsigned int SCR_HEIGHT = 600;
 
 
 std::string preamble =
-	"Session I Code: Part 2\n";
+	"Session II Code\n";
 
 int main(int argc, char **argv)
 {
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
 	// glfw window creation
 	// --------------------
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session I: Part 2", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Session II", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 	// configure global opengl state
 	// -----------------------------
 	//  Uncomment below to actually test for depth. 
-	// glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 
 	// build and compile our shader program
 	// ------------------------------------
